@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aceite de Oliva Premium México</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4A5D23;
+            --secondary-color: #8FA663;
+            --accent-color: #D4E6B5;
+            --text-color: #333333;
+            --light-bg: #F5F7F2;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('https://raw.githubusercontent.com/PinkFlamenco/oilmexicoone.github.io/refs/heads/master/2.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 999;
+        }
+
+        /* Добавляем анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.5s ease-out;
+        }
+
+        /* Стили для формы */
+        .form-container {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(74, 93, 35, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container mx-auto px-4">
+            <h1 class="text-5xl font-bold mb-6">Aceite de Oliva Extra Virgen Premium</h1>
+            <p class="text-xl mb-8">Directo desde los mejores olivares, a tu mesa</p>
+            <a href="#order" class="btn-primary">Comprar Ahora</a>
+        </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="section bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">¿Por qué elegir nuestro aceite?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="text-5xl mb-4">🌿</div>
+                    <h3 class="text-2xl font-bold mb-4">100% Natural</h3>
+                    <p>Aceite de oliva extra virgen prensado en frío, sin aditivos ni conservantes.</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl mb-4">🏆</div>
+                    <h3 class="text-2xl font-bold mb-4">Calidad Premium</h3>
+                    <p>Certificado con los más altos estándares de calidad internacional.</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl mb-4">❤️</div>
+                    <h3 class="text-2xl font-bold mb-4">Beneficios para la Salud</h3>
+                    <p>Rico en antioxidantes y ácidos grasos saludables.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos -->
+    <section class="section bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Nuestros Productos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="product-card">
+                    <img src="https://raw.githubusercontent.com/PinkFlamenco/oilmexicoone.github.io/refs/heads/master/3.jpg" 
+                         alt="Aceite de Oliva Premium" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Clásico Premium</h3>
+                        <p class="mb-4">500ml de puro aceite de oliva extra virgen.</p>
+                        <a href="#order" class="btn-primary inline-block">Comprar</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://raw.githubusercontent.com/PinkFlamenco/oilmexicoone.github.io/refs/heads/master/7.jpg" 
+                         alt="Aceite de Oliva Gourmet" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Edición Gourmet</h3>
+                        <p class="mb-4">750ml en botella de diseño exclusivo.</p>
+                        <a href="#order" class="btn-primary inline-block">Comprar</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://raw.githubusercontent.com/PinkFlamenco/oilmexicoone.github.io/refs/heads/master/8.jpg" 
+                         alt="Aceite de Oliva Especial" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Edición Especial</h3>
+                        <p class="mb-4">1L en botella artesanal numerada.</p>
+                        <a href="#order" class="btn-primary inline-block">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proceso de Producción -->
+    <section class="section bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Nuestro Proceso</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://raw.githubusercontent.com/PinkFlamenco/oilmexicoone.github.io/refs/heads/master/4.jpg" 
+                         alt="Proceso de producción" class="rounded-lg shadow-lg">
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Del Olivo a Tu Mesa</h3>
+                    <p class="mb-4">Nuestro aceite de oliva se produce mediante un cuidadoso proceso de selección y extracción en frío, preservando todos los nutrientes y sabores naturales.</p>
+                    <p class="mb-4">Cada botella representa la dedicación de generaciones de productores y nuestra pasión por la excelencia.</p>
+                    <p>Controlamos cada paso del proceso para garantizar la más alta calidad en cada gota.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Pedido -->
+    <section id="order" class="section bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Realiza tu Pedido</h2>
+            <div class="form-container">
+                <form id="orderForm" class="space-y-4">
+                    <input type="text" class="form-input name" name="name" maxlength="30" 
+                           placeholder="Ingresa tu nombre" required value="">
+                    <input type="tel" class="form-input name" name="phone" id="phoneNumber" 
+                           placeholder="Ingresa tu número de teléfono" required value="">
+                    <select class="form-input" name="product" required>
+                        <option value="">Selecciona el producto</option>
+                        <option value="classic">Clásico Premium - 500ml</option>
+                        <option value="gourmet">Edición Gourmet - 750ml</option>
+                        <option value="special">Edición Especial - 1L</option>
+                    </select>
+                    <input type="number" class="form-input" name="quantity" min="1" max="10" 
+                           placeholder="Cantidad" required>
+                    <textarea class="form-input" name="comments" 
+                             placeholder="Comentarios adicionales (opcional)"></textarea>
+                    <button type="submit" class="btn-primary w-full">Realizar Pedido</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contacto</h3>
+                    <p>Email: info@oilmexicoone.github.io</p>
+                    <p>Tel: +52 55 1234 5678</p>
+                    <p>Dirección: Av. Reforma 222, Col. Juárez, Ciudad de México, CP 06600</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Enlaces Útiles</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-400" onclick="showModal('about')">Sobre Nosotros</a></li>
+                        <li><a href="#" class="hover:text-gray-400" onclick="showModal('privacy')">Política de Privacidad</a></li>
+                        <li><a href="#" class="hover:text-gray-400" onclick="showModal('terms')">Términos de Servicio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Políticas</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-400" onclick="showModal('returns')">Devoluciones</a></li>
+                        <li><a href="#" class="hover:text-gray-400" onclick="showModal('shipping')">Envíos</a></li>
+                        <li><a href="#" class="hover:text-gray-400" onclick="showModal('disclaimer')">Aviso Legal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Síguenos</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl">📱</a>
+                        <a href="#" class="text-2xl">📘</a>
+                        <a href="#" class="text-2xl">📸</a>
+                    </div>
+                </div>
+          
+        </div>
+        <div class="text-center mt-8">
+            <p class="text-sm text-gray-400">© 2024 Aceite de Oliva Premium México. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- Модальные окна -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('privacy')">&times;</span>
+            <h2 class="text-3xl font-bold mb-6">Política de Privacidad</h2>
+            <div class="space-y-4">
+                <p>Última actualización: 21 de enero de 2024</p>
+                
+                <h3 class="text-xl font-bold mt-6">1. Información que Recopilamos</h3>
+                <p>Recopilamos la siguiente información personal cuando realiza un pedido:</p>
+                <ul class="list-disc pl-6 mt-2">
+                    <li>Nombre completo</li>
+                    <li>Número de teléfono</li>
+                    <li>Dirección de correo electrónico</li>
+                    <li>Dirección de envío</li>
+                    <li>Información de pedidos y transacciones</li>
+                </ul>
+    
+                <h3 class="text-xl font-bold mt-6">2. Uso de la Información</h3>
+                <p>Utilizamos su información personal para:</p>
+                <ul class="list-disc pl-6 mt-2">
+                    <li>Procesar y entregar sus pedidos</li>
+                    <li>Comunicarnos con usted sobre su pedido</li>
+                    <li>Enviar actualizaciones y ofertas promocionales (con su consentimiento)</li>
+                    <li>Mejorar nuestros productos y servicios</li>
+                    <li>Cumplir con obligaciones legales</li>
+                </ul>
+    
+                <h3 class="text-xl font-bold mt-6">3. Protección de Datos</h3>
+                <p>Implementamos medidas de seguridad técnicas y organizativas para proteger su información personal contra acceso no autorizado, pérdida o alteración.</p>
+    
+                <h3 class="text-xl font-bold mt-6">4. Sus Derechos</h3>
+                <p>Usted tiene derecho a:</p>
+                <ul class="list-disc pl-6 mt-2">
+                    <li>Acceder a su información personal</li>
+                    <li>Rectificar datos inexactos</li>
+                    <li>Solicitar la eliminación de sus datos</li>
+                    <li>Oponerse al procesamiento de sus datos</li>
+                    <li>Retirar su consentimiento en cualquier momento</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('terms')">&times;</span>
+            <h2 class="text-3xl font-bold mb-6">Términos de Servicio</h2>
+            <div class="space-y-4">
+                <p>Última actualización: 21 de enero de 2024</p>
+    
+                <h3 class="text-xl font-bold mt-6">1. Aceptación de los Términos</h3>
+                <p>Al acceder y realizar pedidos en nuestro sitio, usted acepta estos términos de servicio en su totalidad. Si no está de acuerdo con alguna parte de estos términos, no debe utilizar nuestro sitio.</p>
+    
+                <h3 class="text-xl font-bold mt-6">2. Productos y Precios</h3>
+                <p>Nos esforzamos por mantener la precisión en la descripción de productos y precios. Sin embargo, nos reservamos el derecho de modificar precios sin previo aviso y rechazar pedidos basados en errores de precio.</p>
+    
+                <h3 class="text-xl font-bold mt-6">3. Pedidos y Pago</h3>
+                <p>Al realizar un pedido, usted garantiza que toda la información proporcionada es precisa y que tiene la autoridad para realizar la compra. Los pagos deben realizarse en su totalidad antes del envío.</p>
+    
+                <h3 class="text-xl font-bold mt-6">4. Envíos y Entregas</h3>
+                <p>Los tiempos de entrega son estimados y pueden variar según la ubicación. No nos hacemos responsables por retrasos fuera de nuestro control.</p>
+    
+                <h3 class="text-xl font-bold mt-6">5. Calidad del Producto</h3>
+                <p>Garantizamos la calidad de nuestro aceite de oliva y su conformidad con los estándares alimentarios mexicanos. Cada lote es sometido a rigurosos controles de calidad.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="returnsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('returns')">&times;</span>
+            <h2 class="text-3xl font-bold mb-6">Política de Devoluciones y Reembolsos</h2>
+            <div class="space-y-4">
+                <p>Su satisfacción es nuestra prioridad. Nuestra política de devoluciones está diseñada para proteger sus derechos como consumidor.</p>
+    
+                <h3 class="text-xl font-bold mt-6">1. Condiciones de Devolución</h3>
+                <p>Aceptamos devoluciones dentro de los 30 días posteriores a la recepción del producto si:</p>
+                <ul class="list-disc pl-6 mt-2">
+                    <li>El producto está sin abrir y en su empaque original</li>
+                    <li>Presenta defectos de fabricación</li>
+                    <li>El producto recibido no corresponde al pedido realizado</li>
+                </ul>
+    
+                <h3 class="text-xl font-bold mt-6">2. Proceso de Reembolso</h3>
+                <p>Una vez aprobada la devolución, el reembolso se procesará en un plazo de 5-7 días hábiles utilizando el mismo método de pago original.</p>
+    
+                <h3 class="text-xl font-bold mt-6">3. Gastos de Envío</h3>
+                <p>Los gastos de envío de la devolución serán cubiertos por nosotros solo en casos de productos defectuosos o envíos incorrectos.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="shippingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('shipping')">&times;</span>
+            <h2 class="text-3xl font-bold mb-6">Información de Envío</h2>
+            <div class="space-y-4">
+                <h3 class="text-xl font-bold">Tiempos de Entrega</h3>
+                <p>Realizamos envíos a toda la República Mexicana:</p>
+                <ul class="list-disc pl-6 mt-2">
+                    <li>Ciudad de México y área metropolitana: 1-2 días hábiles</li>
+                    <li>Ciudades principales: 2-3 días hábiles</li>
+                    <li>Resto del país: 3-5 días hábiles</li>
+                </ul>
+    
+                <h3 class="text-xl font-bold mt-6">Costos de Envío</h3>
+                <p>Los costos de envío se calculan basándose en:</p>
+                <ul class="list-disc pl-6 mt-2">
+                    <li>Ubicación de entrega</li>
+                    <li>Peso del pedido</li>
+                    <li>Método de envío seleccionado</li>
+                </ul>
+    
+                <h3 class="text-xl font-bold mt-6">Seguimiento de Pedidos</h3>
+                <p>Una vez que su pedido sea enviado, recibirá un número de seguimiento por correo electrónico para rastrear su paquete en tiempo real.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="disclaimerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('disclaimer')">&times;</span>
+            <h2 class="text-3xl font-bold mb-6">Aviso Legal</h2>
+            <div class="space-y-4">
+                <p class="font-semibold">Este aviso legal regula el uso del sitio web oilmexicoone.github.io</p>
+    
+                <h3 class="text-xl font-bold mt-6">1. Información General</h3>
+                <p>La información proporcionada en este sitio web es solo para fines informativos generales. Todo el contenido se proporciona de buena fe, pero no hacemos declaraciones ni garantías de ningún tipo sobre la precisión, idoneidad, validez, confiabilidad, disponibilidad o integridad de la información.</p>
+    
+                <h3 class="text-xl font-bold mt-6">2. Limitación de Responsabilidad</h3>
+                <p>En ningún caso seremos responsables por cualquier pérdida o daño, incluyendo sin limitación, pérdida o daño indirecto o consecuente, o cualquier pérdida o daño que surja de la pérdida de datos o ganancias que surjan de, o en conexión con, el uso de este sitio web.</p>
+    
+                <h3 class="text-xl font-bold mt-6">3. Propiedades Saludables</h3>
+                <p>Las declaraciones sobre propiedades saludables del aceite de oliva se basan en estudios científicos generalmente aceptados, pero no constituyen consejos médicos. Consulte con su profesional de la salud antes de realizar cambios en su dieta.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('about')">&times;</span>
+            <h2 class="text-3xl font-bold mb-6">Sobre Nosotros</h2>
+            <div class="space-y-4">
+                <p>Somos una empresa familiar dedicada a la producción y distribución de aceite de oliva extra virgen de la más alta calidad en México.</p>
+    
+                <h3 class="text-xl font-bold mt-6">Nuestra Historia</h3>
+                <p>Fundada en 2015, nuestra empresa nació de la pasión por la agricultura sostenible y el deseo de ofrecer a los mexicanos un aceite de oliva de calidad premium a precios accesibles.</p>
+    
+                <h3 class="text-xl font-bold mt-6">Nuestro Compromiso</h3>
+                <p>Nos comprometemos a:</p>
+                <ul class="list-disc pl-6 mt-2">
+                    <li>Mantener los más altos estándares de calidad</li>
+                    <li>Practicar la agricultura sostenible</li>
+                    <li>Apoyar a las comunidades locales</li>
+                    <li>Ofrecer precios justos</li>
+                </ul>
+    
+                <h3 class="text-xl font-bold mt-6">Certificaciones</h3>
+                <p>Nuestros productos cuentan con certificaciones internacionales que avalan su calidad y pureza.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+            <p class="mb-4 md:mb-0">Utilizamos cookies para mejorar su experiencia en nuestro sitio. Al continuar navegando, acepta nuestra política de cookies.</p>
+            <div class="flex space-x-4">
+                <button onclick="acceptCookies()" class="btn-primary">Aceptar</button>
+                <button onclick="showModal('privacy')" class="text-primary-color hover:underline">Más información</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de confirmación de pedido -->
+    <div id="orderConfirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('orderConfirmation')">&times;</span>
+            <div class="text-center">
+                <h2 class="text-3xl font-bold mb-4">¡Gracias por tu pedido!</h2>
+                <p>Nos pondremos en contacto contigo pronto para confirmar los detalles.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    // Функции для работы с модальными окнами
+    function showModal(modalType) {
+        const modal = document.getElementById(modalType + 'Modal');
+        modal.style.display = 'block';
+        modal.classList.add('animate-fade-in');
+    }
+    
+    function closeModal(modalType) {
+        const modal = document.getElementById(modalType + 'Modal');
+        modal.classList.remove('animate-fade-in');
+        modal.style.display = 'none';
+    }
+    
+    // Закрытие модального окна при клике вне его области
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+        }
+    }
+    
+    // Обработка формы заказа
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Здесь можно добавить валидацию формы и отправку данных
+        
+        showModal('orderConfirmation');
+        this.reset();
+    });
+    
+    // Управление cookie-баннером
+    function showCookieBanner() {
+        if (!localStorage.getItem('cookiesAccepted')) {
+            const banner = document.getElementById('cookieBanner');
+            banner.style.display = 'block';
+            banner.classList.add('animate-slide-up');
+        }
+    }
+    
+    function acceptCookies() {
+        localStorage.setItem('cookiesAccepted', 'true');
+        const banner = document.getElementById('cookieBanner');
+        banner.classList.remove('animate-slide-up');
+        banner.style.display = 'none';
+    }
+    
+    // Показываем баннер при загрузке страницы
+    document.addEventListener('DOMContentLoaded', showCookieBanner);
+    
+    // Валидация телефона
+    const phoneInput = document.getElementById('phoneNumber');
+    phoneInput.addEventListener('input', function(e) {
+        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,4})(\d{0,4})/);
+    e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+});
+
+// Добавляем плавную прокрутку для якорных ссылок
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Анимация появления элементов при скролле
+function handleScrollAnimations() {
+    const elements = document.querySelectorAll('.product-card, .section h2, .section p');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    elements.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// Валидация формы перед отправкой
+function validateForm(form) {
+    const name = form.querySelector('input[name="name"]').value.trim();
+    const phone = form.querySelector('input[name="phone"]').value.trim();
+    const product = form.querySelector('select[name="product"]').value;
+    const quantity = form.querySelector('input[name="quantity"]').value;
+
+    if (name.length < 2) {
+        alert('Por favor, ingrese un nombre válido');
+        return false;
+    }
+
+    if (phone.replace(/\D/g, '').length !== 10) {
+        alert('Por favor, ingrese un número de teléfono válido (10 dígitos)');
+        return false;
+    }
+
+    if (!product) {
+        alert('Por favor, seleccione un producto');
+        return false;
+    }
+
+    if (quantity < 1 || quantity > 10) {
+        alert('Por favor, seleccione una cantidad válida (1-10)');
+        return false;
+    }
+
+    return true;
+}
+
+// Обработка отправки формы с валидацией
+document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (validateForm(this)) {
+        // Здесь можно добавить код для отправки данных на сервер
+        const formData = new FormData(this);
+        const orderData = Object.fromEntries(formData.entries());
+        
+        // Имитация отправки данных
+        console.log('Данные заказа:', orderData);
+        
+        // Показываем модальное окно подтверждения
+        showModal('orderConfirmation');
+        
+        // Очищаем форму
+        this.reset();
+    }
+});
+
+// Обработка клика вне модального окна
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal')) {
+        e.target.style.display = 'none';
+    }
+});
+
+// Обработка клавиши ESC для закрытия модальных окон
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            modal.style.display = 'none';
+        });
+    }
+});
+
+// Инициализация всех скриптов при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    showCookieBanner();
+    handleScrollAnimations();
+    
+    // Добавляем класс для анимации героической секции
+    const heroSection = document.querySelector('.hero-section');
+    if (heroSection) {
+        heroSection.classList.add('animate-fade-in');
+    }
+});
+
+</script>
+</body>
+</html>
